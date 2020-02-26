@@ -56,10 +56,10 @@ steps:
     command: login
     containerRegistry: DockerHub
 
-- task: Docker@2
-  displayName: Build and push Docker image to Docker Hub
-  inputs:
-    command: buildAndPush
-    buildContext: '$(modulePath)'
-    repository: newrelic/newrelic-fluentbit-output
-    tags: $(DOCKER_IMAGE_VERSION)
+# - task: Docker@2
+#   displayName: Build and push Docker image to Docker Hub
+#   inputs:
+#     command: buildAndPush
+#     buildContext: '$(modulePath)'
+#     repository: newrelic/newrelic-fluentbit-output
+#     tags: $(DOCKER_IMAGE_VERSION)
