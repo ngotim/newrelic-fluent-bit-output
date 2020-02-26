@@ -25,20 +25,20 @@ steps:
     echo '##vso[task.prependpath]$(GOROOT)/bin'
   displayName: 'Set up the Go workspace'
 
-- task: Bash@3
-  displayName: 'Run tests'
-  inputs:
-    targetType: 'inline'
-    workingDirectory: '$(modulePath)'
-    script: |
-      go get -v -u github.com/jstemmer/go-junit-report
-      go test -v 2>&1 | go-junit-report > test-results.xml
+# - task: Bash@3
+#   displayName: 'Run tests'
+#   inputs:
+#     targetType: 'inline'
+#     workingDirectory: '$(modulePath)'
+#     script: |
+#       go get -v -u github.com/jstemmer/go-junit-report
+#       go test -v 2>&1 | go-junit-report > test-results.xml
 
-- task: PublishTestResults@2
-  inputs:
-    testResultsFormat: 'JUnit'
-    testResultsFiles: '$(modulePath)/test-results.xml'
-    failTaskOnFailedTests: true
+# - task: PublishTestResults@2
+#   inputs:
+#     testResultsFormat: 'JUnit'
+#     testResultsFiles: '$(modulePath)/test-results.xml'
+#     failTaskOnFailedTests: true
 
 - task: Bash@3
   displayName: 'Build the plugin'
@@ -50,7 +50,7 @@ steps:
       echo "##vso[task.setvariable variable=DOCKER_IMAGE_VERSION]$DOCKER_IMAGE_VERSION"
       make all
       ls
-      
+
 # - task: Docker@2
 #   displayName: Login to Docker Hub
 #   inputs:
@@ -64,7 +64,11 @@ steps:
 #     buildContext: '$(modulePath)'
 #     repository: newrelic/newrelic-fluentbit-output
 #     tags: $(DOCKER_IMAGE_VERSION)
-
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Pipeline.Workspace)/out_newrelic.so'
+    artifact: 'out_newrelic.so'
+    publishLocation: 'pipeline'
 - task: GitHubRelease@1
   inputs:
     gitHubConnection: 'github.com_ngotim'
