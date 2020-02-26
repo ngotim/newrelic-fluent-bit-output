@@ -65,11 +65,11 @@ steps:
 #     buildContext: '$(modulePath)'
 #     repository: newrelic/newrelic-fluentbit-output
 #     tags: $(DOCKER_IMAGE_VERSION)
-- task: PublishPipelineArtifact@1
-  inputs:
-    targetPath: '$(modulePath)/out_newrelic.so'
-    artifact: 'out_newrelic.so'
-    publishLocation: 'pipeline'
+# - task: PublishPipelineArtifact@1
+#   inputs:
+#     targetPath: '$(modulePath)/out_newrelic.so'
+#     artifact: 'out_newrelic.so'
+#     publishLocation: 'pipeline'
 - task: GitHubRelease@1
   inputs:
     gitHubConnection: 'github.com_ngotim'
@@ -79,6 +79,6 @@ steps:
     tagSource: 'userSpecifiedTag'
     tag: 'v1.1'
     title: 'Testing'
-    assets: '$(Build.ArtifactStagingDirectory)/out_newrelic.so'
+    assets: '$(modulePath)/out_newrelic.so'
     changeLogCompareToRelease: 'lastFullRelease'
     changeLogType: 'commitBased'
