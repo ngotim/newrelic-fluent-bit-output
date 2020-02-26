@@ -66,7 +66,7 @@ steps:
 #     tags: $(DOCKER_IMAGE_VERSION)
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(Pipeline.Workspace)/out_newrelic.so'
+    targetPath: '$(modulePath)/out_newrelic.so'
     artifact: 'out_newrelic.so'
     publishLocation: 'pipeline'
 - task: GitHubRelease@1
