@@ -46,8 +46,8 @@ steps:
     targetType: 'inline'
     workingDirectory: '$(modulePath)'
     script: |
-      DOCKER_IMAGE_VERSION=`cat version.go | grep VERSION | awk '{gsub(/"/, "", $4); print $4}'`
-      echo "##vso[task.setvariable variable=DOCKER_IMAGE_VERSION]$DOCKER_IMAGE_VERSION"
+      VERSION=`cat version.go | grep VERSION | awk '{gsub(/"/, "", $4); print $4}'`
+      echo "##vso[task.setvariable variable=VERSION]$VERSION"
       make all
       ls -d $PWD/*
       echo $(modulePath)
@@ -64,7 +64,7 @@ steps:
 #     command: buildAndPush
 #     buildContext: '$(modulePath)'
 #     repository: newrelic/newrelic-fluentbit-output
-#     tags: $(DOCKER_IMAGE_VERSION)
+#     tags: $(VERSION)
 # - task: PublishPipelineArtifact@1
 #   inputs:
 #     targetPath: '$(modulePath)/out_newrelic.so'
@@ -77,7 +77,7 @@ steps:
     action: 'create'
     target: '$(Build.SourceVersion)'
     tagSource: 'userSpecifiedTag'
-    tag: 'v1.2'
+    tag: '$(VERSION)'
     title: 'Testing'
     assets: '$(modulePath)/out_newrelic.so'
     changeLogCompareToRelease: 'lastFullRelease'
