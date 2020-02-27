@@ -49,8 +49,6 @@ steps:
       VERSION=`cat version.go | grep VERSION | awk '{gsub(/"/, "", $4); print $4}'`
       echo "##vso[task.setvariable variable=VERSION]$VERSION"
       make all
-      ls -d $PWD/*
-      echo $(modulePath)
 
 # - task: Docker@2
 #   displayName: Login to Docker Hub
@@ -65,11 +63,7 @@ steps:
 #     buildContext: '$(modulePath)'
 #     repository: newrelic/newrelic-fluentbit-output
 #     tags: $(VERSION)
-# - task: PublishPipelineArtifact@1
-#   inputs:
-#     targetPath: '$(modulePath)/out_newrelic.so'
-#     artifact: 'out_newrelic.so'
-#     publishLocation: 'pipeline'
+
 - task: GitHubRelease@1
   inputs:
     gitHubConnection: 'github.com_ngotim'
