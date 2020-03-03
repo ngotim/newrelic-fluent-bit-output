@@ -73,6 +73,8 @@ steps:
     tagSource: 'userSpecifiedTag'
     tag: '$(VERSION)'
     title: 'Testing'
-    assets: '$(modulePath)/out_newrelic.so'
+    assets: |
+      $(modulePath)/out_newrelic.so
+      $(modulePath)/out_newrelic.dll
     changeLogCompareToRelease: 'lastFullRelease'
     changeLogType: 'commitBased'
