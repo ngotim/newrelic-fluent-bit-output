@@ -67,17 +67,18 @@ steps:
 #     repository: newrelic/newrelic-fluentbit-output
 #     tags: $(VERSION)
 
-# - task: GitHubRelease@1
-#   inputs:
-#     gitHubConnection: 'github.com_ngotim'
-#     repositoryName: '$(Build.Repository.Name)'
-#     action: 'create'
-#     target: '$(Build.SourceVersion)'
-#     tagSource: 'userSpecifiedTag'
-#     tag: '$(VERSION)'
-#     title: 'Testing'
-#     assets: |
-#       $(modulePath)/out_newrelic.so
-#       $(modulePath)/out_newrelic.dll
-#     changeLogCompareToRelease: 'lastFullRelease'
-#     changeLogType: 'commitBased'
+- task: GitHubRelease@1
+  inputs:
+    gitHubConnection: 'github.com_ngotim'
+    repositoryName: '$(Build.Repository.Name)'
+    action: 'create'
+    target: '$(Build.SourceVersion)'
+    tagSource: 'userSpecifiedTag'
+    tag: 'test-buildv1'
+    title: 'Testing'
+    assets: |
+      $(modulePath)/out_newrelic.so
+      $(modulePath)/out_newrelic_win64.*
+      $(modulePath)/out_newrelic_win32.*
+    changeLogCompareToRelease: 'lastFullRelease'
+    changeLogType: 'commitBased'
