@@ -45,7 +45,8 @@ steps:
     script: |
       make win64
       set GOARCH=386
-      go install && make win32      
+      go install
+      go get github.com/fluent/fluent-bit-go/output && make win32
       dir
 
 # - task: Docker@2
