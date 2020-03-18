@@ -43,7 +43,7 @@ steps:
   displayName: 'Build the plugin'
   inputs:
     script: |
-      make win64
+      # make win64
       set GOOS=windows
       set GOARCH=386
       go install
