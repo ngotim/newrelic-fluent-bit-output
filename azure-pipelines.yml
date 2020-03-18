@@ -44,10 +44,9 @@ steps:
   inputs:
     script: |
       make win64
-      set GO
+      set GOOS=windows
       set GOARCH=386
       go install
-      go get github.com/fluent/fluent-bit-go/output
       make win32
       dir
 
