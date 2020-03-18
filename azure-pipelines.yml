@@ -45,9 +45,9 @@ steps:
     script: |
       set GOOS=windows
       set GOARCH=386
-      set CC=i686-w64-mingw32-gcc
-      go env
-      make win32
+      go install 
+      echo $PATH
+      go get github.com/fluent/fluent-bit-go/output && make win32
       dir
 
 # - task: Docker@2
