@@ -45,7 +45,7 @@ steps:
     script: |
       set GOOS=windows
       set GOARCH=386
-      set CGO_ENABLED=1
+      go env
       make win32
       dir
 
