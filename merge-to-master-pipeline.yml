@@ -25,9 +25,6 @@ steps:
     echo '##vso[task.prependpath]$(GOROOT)/bin'
   displayName: 'Set up the Go workspace'
 
-- script: sudo apt install mingw-w64
-  displayName: 'Install mingw-w64'
-
 
 # - task: Bash@3
 #   displayName: 'Run tests'
