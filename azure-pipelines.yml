@@ -15,14 +15,14 @@ variables:
   modulePath: '$(GOPATH)/src/github.com/$(build.repository.name)' # Path to the module's code
 
 steps:
-- task: GoTool@0
-  inputs:
-    version: '1.12' 
-    goPath: '$(GOPATH)'
-    goBin: '$(GOBIN)'
-- script: |
-    pwd
-  displayName: 'See wassup'
+# - task: GoTool@0
+#   inputs:
+#     version: '1.12' 
+#     goPath: '$(GOPATH)'
+#     goBin: '$(GOBIN)'
+# - script: |
+#     pwd
+#   displayName: 'See wassup'
 
 # - task: Bash@3
 #   displayName: 'Run tests'
@@ -44,8 +44,8 @@ steps:
   inputs:
     script: |
       make win64
-      set env GOOS=windows
       set GOARCH=386
+      go get github.com/fluent/fluent-bit-go/output
       make win32
       pwd
 
