@@ -60,11 +60,12 @@ steps:
 - script: |
     env CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ 
     make win32
-    ls
   workingDirectory: '$(modulePath)'
   displayName: 'Build Windows 32-bit DLL'
 
-- script: env CGO_ENABLED=1 GOOS=windows GOARCH=amd64 CC=x86_64-w64-mingw32-gcc CXX=x86_64-w64-mingw32-g++ go build -buildmode=c-shared -o out_newrelic_win64.dll .
+- script: |
+    env CGO_ENABLED=1 GOOS=windows GOARCH=amd64 CC=x86_64-w64-mingw32-gcc CXX=x86_64-w64-mingw32-g++
+    make win64
   workingDirectory: '$(modulePath)'
   displayName: 'Build Windows 64-bit DLL'
 
@@ -89,7 +90,7 @@ steps:
     action: 'create'
     target: '$(Build.SourceVersion)'
     tagSource: 'userSpecifiedTag'
-    tag: 'test-build2'
+    tag: '$(VERSION)'
     title: 'Testing'
     assets: |
       $(modulePath)/out_newrelic.so
