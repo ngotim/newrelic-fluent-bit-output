@@ -43,10 +43,12 @@ steps:
   displayName: 'Build the plugin'
   inputs:
     script: |
-      set GOOS=windows
+      set CC=i686-w64-mingw32-gcc
+      set CXX=i686-w64-mingw32-g++
       set GOARCH=386
+      set CGO_ENABLED=1
       go install
-      mingw32-make win32
+      make win32
       dir
 
 # - task: Docker@2
