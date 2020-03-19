@@ -45,10 +45,8 @@ steps:
     script: |
       set GOOS=windows
       set GOARCH=386
-      set CGO_ENABLED=1
-      go install 
-      echo $PATH
-      go get github.com/fluent/fluent-bit-go/output && make win32
+      go install
+      mingw32-make win32
       dir
 
 # - task: Docker@2
