@@ -44,7 +44,9 @@ steps:
 - task: Bash@3
   inputs:
     targetType: 'inline'
-    script: 'sudo apt install mingw-w64'
+    script: |
+      sudo apt install mingw-w64
+      i686-w64-mingw32-gcc
   displayName: 'Get mingw'
 
 - task: Bash@3
