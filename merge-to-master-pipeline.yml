@@ -57,9 +57,9 @@ steps:
       VERSION=`cat version.go | grep VERSION | awk '{gsub(/"/, "", $4); print $4}'`
       echo "##vso[task.setvariable variable=VERSION]$VERSION"
       make all
-      env GOOS=windows GOARCH=amd64 CC=x86_64-w64-mingw32-gcc CXX=x86_64-w64-mingw32-g++ && make win64
+      GOOS=windows GOARCH=amd64 CC=x86_64-w64-mingw32-gcc CXX=x86_64-w64-mingw32-g++ && make win64
       go env
-      env GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ && make win32
+      GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ && make win32
       ls -l --block-size=M
 
 # - task: Docker@2
